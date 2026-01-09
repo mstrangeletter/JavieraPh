@@ -4,7 +4,8 @@ type Props = {
   image: string;          // ruta en /public (p.ej. "/javilogoblackletter.png")
   duration?: number;      // segundos del revelado
   delay?: number;         // segundos antes de iniciar
-  easing?: string;        // CSS easing, p.ej. "ease-in-out"
+  easing?: string;  
+  strokeWidth?: number;       // CSS easing, p.ej. "ease-in-out"
   className?: string;
   maxWidthPx?: number;    // límite de ancho (px)
   maxWidthVw?: number;    // límite relativo (% viewport)

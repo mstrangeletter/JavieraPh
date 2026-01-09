@@ -14,7 +14,7 @@ type Props = {
   title?: string;
 };
 
-const GalleryCarousel: React.FC<Props> = ({ images, title }) => {
+const GalleryCarousel: React.FC<Props> = ({ images }) => {
   return (
     <section className="gallery-carousel">
       

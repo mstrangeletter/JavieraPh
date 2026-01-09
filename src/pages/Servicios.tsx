@@ -68,24 +68,24 @@ const Servicios = () => {
   const nav = useNavigate();
 
   const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement>,
-    index: number
-  ) => {
-    const { offsetWidth: width, offsetHeight: height } = e.currentTarget;
-    const x = (e.nativeEvent as any).offsetX;
-    const y = (e.nativeEvent as any).offsetY;
+  e: React.MouseEvent<HTMLElement>,
+  index: number
+) => {
+  const { offsetWidth: width, offsetHeight: height } = e.currentTarget;
+  const { offsetX: x, offsetY: y } = e.nativeEvent as any;
 
-    const moveX = (x / width - 0.5) * 20;
-    const moveY = (y / height - 0.5) * 20;
+  const moveX = (x / width - 0.5) * 20;
+  const moveY = (y / height - 0.5) * 20;
 
-    setHoverStyles((prev) => ({
-      ...prev,
-      [index]: {
-        boxShadow: `${-moveX}px ${-moveY}px 28px rgba(0,0,0,.45)`,
-        backgroundPosition: `${50 + moveX / 2}% ${50 + moveY / 2}%`,
-      },
-    }));
-  };
+  setHoverStyles((prev) => ({
+    ...prev,
+    [index]: {
+      boxShadow: `${-moveX}px ${-moveY}px 28px rgba(0,0,0,.45)`,
+      backgroundPosition: `${50 + moveX / 2}% ${50 + moveY / 2}%`,
+    },
+  }));
+};
+
 
   const handleMouseLeave = (index: number) => {
     setHoverStyles((prev) => ({
@@ -112,25 +112,26 @@ const Servicios = () => {
               viewport={{ once: true }}
             >
               <article
-                role="button"
-                tabIndex={0}
-                onClick={() => nav(`/portafolio/${slug}`)}
-                onKeyDown={(e) =>
-                  (e.key === "Enter" || e.key === " ") &&
-                  nav(`/portafolio/${slug}`)
-                }
-                onMouseMove={(e) => handleMouseMove(e, i)}
-                onMouseLeave={() => handleMouseLeave(i)}
-                style={{
-                  "--accent": accent,
-                  cursor: "pointer",
-                  boxShadow:
-                    hoverStyles[i]?.boxShadow ||
-                    "0 0 18px rgba(0,0,0,.35)",
-                  backgroundPosition:
-                    hoverStyles[i]?.backgroundPosition || "50% 50%",
-                } as React.CSSProperties}
-              >
+  role="button"
+  tabIndex={0}
+  onClick={() => nav(`/portafolio/${slug}`)}
+  onKeyDown={(e) =>
+    (e.key === "Enter" || e.key === " ") &&
+    nav(`/portafolio/${slug}`)
+  }
+  onMouseMove={(e) => handleMouseMove(e, i)}
+  onMouseLeave={() => handleMouseLeave(i)}
+  style={{
+    "--accent": accent,
+    cursor: "pointer",
+    boxShadow:
+      hoverStyles[i]?.boxShadow ||
+      "0 0 18px rgba(0,0,0,.35)",
+    backgroundPosition:
+      hoverStyles[i]?.backgroundPosition || "50% 50%",
+  } as React.CSSProperties}
+>
+
                 <Icon size={44} weight="duotone" />
                 <h3>{title}</h3>
                 <p>{description}</p>
