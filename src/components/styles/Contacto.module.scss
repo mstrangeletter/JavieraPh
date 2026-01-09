@@ -1,0 +1,106 @@
+@import "../styles/Variables.scss";
+
+$primary-color: #6796b7;
+$dark-color: #262b3c;
+$light-color: #d6cfd3;
+
+$text-color: #d6cfd3;
+$background-color: #262b3c;
+$input-bg: darken($dark-color, 3%);
+
+.contacto {
+  background-color: $background-color;
+  padding: 100px 20px;
+  text-align: center;
+  color: $text-color;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: $light-color;
+  }
+
+  .subtitulo {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+
+    p {
+      font-weight: 400;
+      background: linear-gradient(90deg, $primary-color, lighten($primary-color, 20%));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+  }
+}
+
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .inputGroup {
+    display: flex;
+    align-items: center;
+    background-color: $input-bg;
+    border-radius: 8px;
+    padding: 0 12px;
+
+    .icon {
+      color: lighten($text-color, 20%);
+      flex-shrink: 0;
+    }
+
+    input,
+    textarea {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      background: transparent;
+      color: $text-color;
+      font-size: 1rem;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+
+  button {
+    padding: 14px;
+    background-color: $primary-color;
+    border: none;
+    border-radius: 8px;
+    color: $dark-color;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: lighten($primary-color, 10%);
+    }
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .contacto {
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    .subtitulo {
+      font-size: 1rem;
+    }
+  }
+}

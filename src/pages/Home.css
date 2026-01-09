@@ -1,0 +1,2 @@
+html { scroll-behavior: smooth; }
+.scroll-anchor { scroll-margin-top: 110px; } /* ajusta a la altura real del navbar */

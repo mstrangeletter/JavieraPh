@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap");
+
+$nav-h: 100px;
+
+.hero {
+  width: 100%;
+  min-height: calc(100vh - $nav-h);
+  padding: calc($nav-h + 20px) 6% 60px; /* espacio bajo navbar fijo */
+  background: #f7f8fa; /* ← BLANCO SUAVE (igual que antes) */
+  color: #0e1a2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* IZQ fotos / DER texto */
+  column-gap: 56px;
+  align-items: center;
+}
+
+/* ===== IZQUIERDA: MURO DE FOTOS ===== */
+.left {
+  width: 40vw;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photoWall {
+  /* grid responsivo tipo collage */
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 720px;
+}
+
+.photoCard {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+  /* distintas alturas para dinamismo */
+  &:nth-child(6n+1) { grid-column: span 3; aspect-ratio: 3 / 4; }
+  &:nth-child(6n+2) { grid-column: span 3; aspect-ratio: 3 / 2; }
+  &:nth-child(6n+3) { grid-column: span 2; aspect-ratio: 1 / 1; }
+  &:nth-child(6n+4) { grid-column: span 2; aspect-ratio: 2 / 3; }
+  &:nth-child(6n+5) { grid-column: span 2; aspect-ratio: 1 / 1; }
+  &:nth-child(6n+6) { grid-column: span 4; aspect-ratio: 16 / 9; }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.01);
+    transition: transform .5s ease, filter .5s ease;
+    filter: saturate(1.02) contrast(1.02);
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+    filter: saturate(1.08) contrast(1.06);
+  }
+}
+
+/* ===== DERECHA: TEXTO ===== */
+.right {
+  width: 60vw;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  vertical-align: top;
+  align-items: center;
+}
+
+.rightInner {
+  width: 70%;     /* ← el texto ocupa el 70% de su columna */
+  margin: 0 auto; /* centrado dentro del 50% derecho */
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  font-weight: 600;
+  color: #7a8796;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: clamp(2.6rem, 2rem + 2.8vw, 5rem);
+  line-height: 1.05;
+  margin: 0 0 10px;
+  color: #0e1a2b; /* título sólido, coherente con el sitio */
+}
+
+.rule {
+  width: 120px;
+  height: 6px;
+  border: 0;
+  background: var(--primary-color);
+  border-radius: 4px;
+  margin: 6px 0 22px;
+}
+
+.textBlocks {
+  p {
+    margin: 0 0 14px;
+    font-size: clamp(1.08rem, 1rem + 0.4vw, 1.25rem);
+    line-height: 1.75;
+    color: #223041;
+  }
+}
+
+.typingWrapper {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.signature {
+  margin-top: 32px;
+}
+
+/* animación de entrada */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE =====
+   En móvil/tablet: PRIMERO fotos, LUEGO texto
+*/
+@media (max-width: 1024px) {
+  .inner {
+    grid-template-columns: 1fr;
+    row-gap: 36px;
+  }
+
+  .left, .right {
+    width: 100%;
+    max-width: none;
+    justify-content: center;
+  }
+
+  /* Fotos ARRIBA, texto ABAJO */
+  .left { order: 1; }
+  .right { order: 2; }
+
+  .rightInner {
+    width: min(700px, 90%);
+    text-align: center;
+  }
+
+  .photoWall {
+    max-width: 920px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: calc($nav-h + 12px) 5% 48px;
+  }
+  .photoWall {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .photoCard {
+    border-radius: 12px;
+  }
+}
